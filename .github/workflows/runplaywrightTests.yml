@@ -1,0 +1,11 @@
+name: Run Playwright tests
+on: [push]
+jobs:
+  run-playwright-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v4
+    - run: npm ci
+    - run: npx playwright install
+    - run: npx playwright test --project=firefox
