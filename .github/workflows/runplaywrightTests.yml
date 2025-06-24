@@ -17,4 +17,4 @@ jobs:
         run: npx playwright install
 
       - name: Run Playwright tests (Firefox on all projects)
-        run: npx playwright test --project=".*Firefox"
+        run: npx playwright test
