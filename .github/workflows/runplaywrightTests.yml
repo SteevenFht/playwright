@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: [TodoMVC, PetStore, SauceDemo]
+        project: [TodoMVC, PetStore, SauceDemo, Amazon]
 
     name: Firefox - ${{ matrix.project }}
 
