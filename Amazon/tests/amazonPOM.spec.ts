@@ -25,7 +25,7 @@ import { CartPage } from '../pom/CartPage.page';
 // Test case 1 : Verify navigation to amazon.fr
 // Step 1: Open the browser and navigate to the amazon.fr 
 // Expected Result: Verify that the current URL is amazon.fr
-test('Verify navigation to amazon.fr', async ({ page }) => {
+test('@smoke Verify navigation to amazon.fr', async ({ page }) => {
     const homePage = new HomePage(page);
     
     await homePage.navigateToAmazon();
@@ -37,7 +37,7 @@ test('Verify navigation to amazon.fr', async ({ page }) => {
 // Step 1: Open the browser and navigate to the amazon.fr
 // Step 2: Accept cookies
 // Expected Result: Verify that the cookies are accepted (the button disappears after the click)
-test('Verify cookie acceptance', async ({ page }) => {
+test('@smoke Verify cookie acceptance', async ({ page }) => {
     const homePage = new HomePage(page);
 
     await homePage.navigateToAmazon();
@@ -51,7 +51,7 @@ test('Verify cookie acceptance', async ({ page }) => {
 // Step 1: Open the browser and navigate to the amazon.fr and Close the pop-up
 // Step 2: Search for "ballon de basket"
 // Expected Result: Verify that the search results are displayed
-test('Verify product search', async ({ page }) => {
+test('@smoke Verify product search', async ({ page }) => {
     const homePage = new HomePage(page);
 
     await homePage.navigateToAmazon();
@@ -65,7 +65,7 @@ test('Verify product search', async ({ page }) => {
 // Step 1: Navigate to amazon.fr, perform the search
 // Step 2: Select the first product
 // Expected Result: Verify that the product page is displayed (e.g., check the product title element)
-test('Verify selection of the first product', async ({ page }) => {
+test('@smoke Verify selection of the first product', async ({ page }) => {
     const homePage = new HomePage(page);
     const searchResultsPage = new SearchResultsPage(page);
     const productPage = new ProductPage(page);
