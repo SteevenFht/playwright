@@ -10,9 +10,10 @@ export class ProductPage {
     }
 
     async addToCart() {
-        await this.addToCartButton.waitFor({ state: 'visible', timeout: 10000 });
+        await this.page.waitForSelector('#add-to-cart-button', { state: 'visible', timeout: 15000 });
         await this.addToCartButton.click();
     }
+
 
     async verifyProductAdded(): Promise<boolean> {
         const confirmationMessage = this.page.locator('#huc-v2-order-row-confirm-text');
