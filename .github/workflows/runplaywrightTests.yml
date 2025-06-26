@@ -5,19 +5,46 @@ on: [push]
 jobs:
   run-playwright-tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: [TodoMVC, PetStore, "Sauce Demo"]
+
+    name: Playwright - ${{ matrix.project }}
 
     steps:
-      - name: Check out repository code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Installer les dépendances système requises par Playwright
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libgtk-4-1 \
+            libgraphene-1.0-0 \
+            libwoff1 \
+            libvpx9 \
+            libevent-2.1-7 \
+            libopus0 \
+            libgstreamer-plugins-base1.0-0 \
+            libgstreamer-plugins-good1.0-0 \
+            libgstreamer1.0-0 \
+            libflite1 \
+            libavif16 \
+            libharfbuzz-icu0 \
+            libsecret-1-0 \
+            libhyphen0 \
+            libmanette-0.2-0 \
+            libgles2 \
+            libx264-155
+
+      - name: Installer les dépendances npm
         run: npm ci
-        working-directory: TodoMVC
+        working-directory: ${{ matrix.project }}
 
-      - name: Install Playwright browsers
+      - name: Installer les navigateurs Playwright
         run: npx playwright install
-        working-directory: TodoMVC
+        working-directory: ${{ matrix.project }}
 
-      - name: Run Playwright tests (Firefox on all projects)
-        run: npx playwright test --project=firefox
-        working-directory: TodoMVC
+      - name: Lancer les tests Playwright
+        run: npx playwright test
+        working-directory: ${{ matrix.project }}
