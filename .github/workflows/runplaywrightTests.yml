@@ -1,28 +1,43 @@
-name: Run Playwright tests (Firefox only)
+name: Run Playwright tests
 
 on: [push]
 
 jobs:
-  run-firefox-tests:
+  firefox-projects:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: [TodoMVC, PetStore, SauceDemo, Amazon]
-
-    name: Firefox - ${{ matrix.project }}
+        project: [TodoMVC, PetStore, SauceDemo]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install npm dependencies
+      - name: Install dependencies
         run: npm ci
         working-directory: ${{ matrix.project }}
 
-      - name: Install Playwright + Firefox
-        run: npx playwright install --with-deps firefox
+      - name: Install Playwright browsers
+        run: npx playwright install
         working-directory: ${{ matrix.project }}
 
-      - name: Run Playwright tests (Firefox only)
+      - name: Run Playwright tests (Firefox)
         run: npx playwright test --project=firefox
         working-directory: ${{ matrix.project }}
+
+  amazon-chromium:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: Amazon
+
+      - name: Install Playwright browsers
+        run: npx playwright install
+        working-directory: Amazon
+
+      - name: Run Playwright tests (Chromium)
+        run: npx playwright test --project=chromium
+        working-directory: Amazon
