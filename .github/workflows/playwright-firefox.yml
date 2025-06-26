@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        project-dir: [PetStore, Sauce Demo, TodoMVC]
+        project-dir: [PetStore, SauceDemo, TodoMVC]
 
     steps:
       - name: Checkout code
