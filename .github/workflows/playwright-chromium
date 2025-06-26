@@ -1,6 +1,10 @@
-name: Playwright Tests - Chromium (Amazon only)
+name: Playwright Chromium (Amazon only)
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   chromium-tests:
@@ -18,6 +22,6 @@ jobs:
         run: npx playwright install
         working-directory: Amazon
 
-      - name: Run tests on Chromium
+      - name: Run Chromium tests
         run: npx playwright test --project=chromium --grep @smoke
         working-directory: Amazon
