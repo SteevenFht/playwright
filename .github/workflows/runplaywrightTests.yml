@@ -24,7 +24,7 @@ jobs:
         run: npx playwright test --project=firefox
         working-directory: ${{ matrix.project }}
 
-  amazon-WebKit:
+  amazon-chromium:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,6 +38,6 @@ jobs:
         run: npx playwright install
         working-directory: Amazon
 
-      - name: Run Playwright tests (WebKit)
-        run: npx playwright test --project=WebKit
+      - name: Run Playwright tests (chromium)
+        run: npx playwright test --project=chromium
         working-directory: Amazon
