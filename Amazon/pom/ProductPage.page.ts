@@ -10,6 +10,7 @@ export class ProductPage {
     }
 
     async addToCart() {
+        await this.addToCartButton.waitFor({ state: 'visible', timeout: 10000 });
         await this.addToCartButton.click();
     }
 
