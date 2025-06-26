@@ -19,5 +19,5 @@ jobs:
         working-directory: TodoMVC
 
       - name: Run Playwright tests (Firefox on all projects)
-        run: npx playwright test
+        run: npx playwright test --project=firefox
         working-directory: TodoMVC
