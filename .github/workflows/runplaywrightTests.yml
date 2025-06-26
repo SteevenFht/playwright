@@ -1,50 +1,28 @@
-name: Run Playwright tests
+name: Run Playwright tests (Firefox only)
 
 on: [push]
 
 jobs:
-  run-playwright-tests:
+  run-firefox-tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         project: [TodoMVC, PetStore, "Sauce Demo"]
 
-    name: Playwright - ${{ matrix.project }}
+    name: Firefox - ${{ matrix.project }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Installer les dépendances système requises par Playwright
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libgtk-4-1 \
-            libgraphene-1.0-0 \
-            libwoff1 \
-            libvpx9 \
-            libevent-2.1-7 \
-            libopus0 \
-            libgstreamer-plugins-base1.0-0 \
-            libgstreamer-plugins-good1.0-0 \
-            libgstreamer1.0-0 \
-            libflite1 \
-            libavif16 \
-            libharfbuzz-icu0 \
-            libsecret-1-0 \
-            libhyphen0 \
-            libmanette-0.2-0 \
-            libgles2 \
-            libx264-155
-
-      - name: Installer les dépendances npm
+      - name: Install npm dependencies
         run: npm ci
         working-directory: ${{ matrix.project }}
 
-      - name: Installer les navigateurs Playwright
-        run: npx playwright install
+      - name: Install Playwright + Firefox
+        run: npx playwright install --with-deps firefox
         working-directory: ${{ matrix.project }}
 
-      - name: Lancer les tests Playwright
-        run: npx playwright test
+      - name: Run Playwright tests (Firefox only)
+        run: npx playwright test --project=firefox
         working-directory: ${{ matrix.project }}
