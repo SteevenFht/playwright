@@ -1,0 +1,23 @@
+name: Playwright Tests - Chromium (Amazon only)
+
+on: [push, pull_request]
+
+jobs:
+  chromium-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: Amazon
+
+      - name: Install Playwright browsers
+        run: npx playwright install
+        working-directory: Amazon
+
+      - name: Run tests on Chromium
+        run: npx playwright test --project=chromium
+        working-directory: Amazon
