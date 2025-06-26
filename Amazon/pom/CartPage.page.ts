@@ -21,6 +21,5 @@ export class CartPage {
         const firstCartItem = this.cartItems.first();
         return await firstCartItem.locator('.a-truncate-cut').innerText(); // Adjust the selector based on the actual structure of the cart item
     }
-
-
+    
 }
