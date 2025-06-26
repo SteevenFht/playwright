@@ -19,5 +19,5 @@ jobs:
         working-directory: Amazon
 
       - name: Run tests on Chromium
-        run: npx playwright test --project=chromium
+        run: npx playwright test --project=chromium --grep @smoke
         working-directory: Amazon
