@@ -17,9 +17,10 @@ export class HomePage {
     }
 
     async acceptCookies() {
-        await this.page.waitForTimeout(1000); // Wait for the page to load
+        await this.page.waitForSelector('#sp-cc-accept', { state: 'visible', timeout: 15000 });
         await this.acceptCookiesButton.click();
     }
+
 
     async searchProduct(productName: string) {
         await this.searchBox.fill(productName);
